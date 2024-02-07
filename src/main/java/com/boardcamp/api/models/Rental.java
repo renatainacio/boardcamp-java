@@ -29,16 +29,16 @@ public class Rental {
     private LocalDate rentDate;
 
     @Column
-    private int daysRented;
+    private Long daysRented;
 
     @Column
     private LocalDate returnDate;
 
     @Column
-    private int originalPrice;
+    private Long originalPrice;
 
     @Column
-    private int delayFee;
+    private Long delayFee;
 
     @ManyToOne
     @JoinColumn(name = "customerId")
@@ -53,7 +53,7 @@ public class Rental {
         this.daysRented = rentalDTO.getDaysRented();
         this.returnDate = null;
         this.originalPrice = game.getPricePerDay() * daysRented;
-        this.delayFee = 0;
+        this.delayFee = 0L;
         this.customer = customer;
         this.game = game;
     }

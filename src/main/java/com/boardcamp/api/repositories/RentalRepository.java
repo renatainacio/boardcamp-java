@@ -9,6 +9,6 @@ import com.boardcamp.api.models.Rental;
 public interface RentalRepository extends JpaRepository<Rental, Long> {
 
     @Query(value="SELECT COUNT(id) FROM rentals WHERE game_Id = :gameId AND return_date IS NULL", nativeQuery = true)
-    int countUnavailableUnits(@Param("gameId") Long gameId);
+    Long countUnavailableUnits(@Param("gameId") Long gameId);
 
 }

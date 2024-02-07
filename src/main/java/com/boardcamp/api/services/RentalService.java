@@ -1,5 +1,7 @@
 package com.boardcamp.api.services;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +11,8 @@ import com.boardcamp.api.dtos.RentalDTO;
 import com.boardcamp.api.exceptions.CustomerNotFoundException;
 import com.boardcamp.api.exceptions.GameNotFoundException;
 import com.boardcamp.api.exceptions.NoUnitsAvailableException;
+import com.boardcamp.api.exceptions.RentalAlreadyFinishedException;
+import com.boardcamp.api.exceptions.RentalNotFoundException;
 import com.boardcamp.api.models.Customer;
 import com.boardcamp.api.models.Game;
 import com.boardcamp.api.models.Rental;
@@ -38,7 +42,7 @@ public class RentalService {
         if(!game.isPresent())
             throw new GameNotFoundException();
 
-        int unavailableUnits = this.rentalRepository.countUnavailableUnits(game.get().getId());
+        Long unavailableUnits = this.rentalRepository.countUnavailableUnits(game.get().getId());
         if (game.get().getStockTotal() <= unavailableUnits)
             throw new NoUnitsAvailableException();
 
@@ -50,6 +54,27 @@ public class RentalService {
 
     public List<Rental> getRentals(){
         return this.rentalRepository.findAll();
+    }
+
+    public Rental finishRental(Long id, LocalDate today){
+        Optional<Rental> rental = this.rentalRepository.findById(id);
+        if(!rental.isPresent())
+            throw new RentalNotFoundException();
+        
+        if (rental.get().getReturnDate() != null)
+            throw new RentalAlreadyFinishedException();
+
+        rental.get().setReturnDate(today);
+        long rentalDays = ChronoUnit.DAYS.between(rental.get().getRentDate(), today);
+        
+        if (rentalDays > rental.get().getDaysRented())
+            rental.get().setDelayFee(calculateDelayFee(rental.get(), rentalDays));
+
+        return this.rentalRepository.save(rental.get());
+    }
+
+    private long calculateDelayFee(Rental rental, long rentalDays){
+        return (rentalDays - rental.getDaysRented() * rental.getGame().getPricePerDay());
     }
 
 }

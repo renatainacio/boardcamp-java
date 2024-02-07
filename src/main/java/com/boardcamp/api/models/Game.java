@@ -19,7 +19,7 @@ public class Game {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    private Long id;
 
     @Column(nullable = false, unique = true)
     private String name;
@@ -28,10 +28,10 @@ public class Game {
     private String image;
 
     @Column
-    private int stockTotal;
+    private Long stockTotal;
 
     @Column
-    private int pricePerDay;
+    private Long pricePerDay;
 
     public Game(GameDTO gameDTO){
         this.image = gameDTO.getImage();

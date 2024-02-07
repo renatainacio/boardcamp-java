@@ -15,9 +15,9 @@ public class GameDTO {
 
     @NotNull(message = "Stock Total must not be null")
     @Positive(message = "pricePerDay should be greater than zero.")
-    private int stockTotal;
+    private Long stockTotal;
 
     @NotNull(message = "Price Per Day must not be null")
     @Positive(message = "pricePerDay should be greater than zero.")
-    private int pricePerDay;
+    private Long pricePerDay;
 }
