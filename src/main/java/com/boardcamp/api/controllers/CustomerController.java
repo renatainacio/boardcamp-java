@@ -1,5 +1,7 @@
 package com.boardcamp.api.controllers;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +14,9 @@ import com.boardcamp.api.models.Customer;
 import com.boardcamp.api.services.CustomerService;
 
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 @RestController
 @RequestMapping("/customers")
@@ -29,5 +34,11 @@ public class CustomerController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(customer);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Customer> getCustomers(@PathVariable Long id) {
+        Customer customer = customerService.getCustomerById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(customer);
+    }    
 
 }
