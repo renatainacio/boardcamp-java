@@ -1,7 +1,10 @@
 package com.boardcamp.api.controllers;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,5 +30,11 @@ public class RentalController {
     public ResponseEntity<Rental> postRental(@RequestBody @Valid RentalDTO rentalDTO){
         Rental rental = this.rentalService.postRental(rentalDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(rental);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Rental>> getRentals(){
+        List<Rental> rentals = this.rentalService.getRentals();
+        return ResponseEntity.status(HttpStatus.OK).body(rentals);
     }
 }
