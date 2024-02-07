@@ -29,4 +29,14 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
     }
 
+    @ExceptionHandler({ GameNotFoundException.class })
+    public ResponseEntity<String> handleGameNotFound(GameNotFoundException exception){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+    }
+
+    @ExceptionHandler({ NoUnitsAvailableException.class })
+    public ResponseEntity<String> handleNoUnitsAvailable(NoUnitsAvailableException exception){
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(exception.getMessage());
+    }
+
 }

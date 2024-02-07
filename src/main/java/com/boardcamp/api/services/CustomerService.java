@@ -26,7 +26,7 @@ public class CustomerService {
         boolean existingCustomer = !this.customerRepository.findByCpf(customerDTO.getCpf()).isEmpty();
 
         if (existingCustomer) 
-            throw new CPFAlreadyRegisteredException("The informed CPF is already registered.");
+            throw new CPFAlreadyRegisteredException();
         else {
             Customer customer = new Customer(customerDTO);
 
@@ -37,7 +37,7 @@ public class CustomerService {
     public Customer getCustomerById(Long id){
         Optional<Customer> customer = this.customerRepository.findById(id);
         if (!customer.isPresent())
-            throw new CustomerNotFoundException("There's no customer with the informed id.");
+            throw new CustomerNotFoundException();
         else
             return customer.get();
     }
