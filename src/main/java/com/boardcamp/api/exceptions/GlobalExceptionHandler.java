@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler({ CPFAlreadyRegisteredException.class })
+    public ResponseEntity<String> handleCPFAlreadyRegistered(CPFAlreadyRegisteredException exception){
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getMessage());
+    }
+
     @ExceptionHandler({ GameAlreadyExistsException.class })
     public ResponseEntity<String> handleGameAlreadyExists(GameAlreadyExistsException exception){
         return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getMessage());

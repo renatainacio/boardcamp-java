@@ -8,16 +8,16 @@ import lombok.Data;
 @Data
 public class GameDTO {
 
-    @NotBlank(message = "name must not be blank")
+    @NotBlank(message = "Name must not be blank")
     private String name;
 
     private String image;
 
-    @NotNull(message = "stockTotal must not be null")
+    @NotNull(message = "Stock Total must not be null")
     @Min(value = 1, message = "stockTotal should be greater than zero.")
     private int stockTotal;
 
-    @NotNull(message = "pricePerDay must not be null")
+    @NotNull(message = "Price Per Day must not be null")
     @Min(value = 1, message = "pricePerDay should be greater than zero.")
     private int pricePerDay;
 }

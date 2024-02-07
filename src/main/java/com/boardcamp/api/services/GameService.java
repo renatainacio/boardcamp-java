@@ -12,7 +12,7 @@ import com.boardcamp.api.repositories.GameRepository;
 @Service
 public class GameService {
     
-    final GameRepository gameRepository;
+    private final GameRepository gameRepository;
 
     GameService(GameRepository gameRepository){
         this.gameRepository = gameRepository;
