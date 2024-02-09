@@ -74,7 +74,7 @@ public class RentalService {
     }
 
     private long calculateDelayFee(Rental rental, long rentalDays){
-        return (rentalDays - rental.getDaysRented() * rental.getGame().getPricePerDay());
+        return ((rentalDays - rental.getDaysRented()) * rental.getGame().getPricePerDay());
     }
 
 }

@@ -73,7 +73,7 @@ class CustomerUnitTests {
 
 		//then
 		assertNotNull(exception);
-		assertEquals("The informed CPF is already register.", exception.getMessage());
+		assertEquals("The informed CPF is already registered", exception.getMessage());
 		verify(customerRepository, times(1)).existsByCpf(customerDTO.getCpf());
 		verify(customerRepository, times(0)).save(any());
 	}
@@ -113,7 +113,7 @@ class CustomerUnitTests {
 		//then
 		verify(customerRepository, times(1)).findById(any());
 		assertNotNull(exception);
-		assertEquals("There is no customer with the informed id.", exception.getMessage());
+		assertEquals("There is no customer with the informed id", exception.getMessage());
 	}
 
 }

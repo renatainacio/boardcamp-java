@@ -71,7 +71,7 @@ class GameUnitTests {
 
 		//then
 		assertNotNull(exception);
-		assertEquals("A game with this name already exists.", exception.getMessage());
+		assertEquals("A game with this name already exists", exception.getMessage());
 		verify(gameRepository, times(1)).existsByName("name");
 		verify(gameRepository, times(0)).save(any());
 

@@ -115,7 +115,7 @@ class RentalUnitTests {
 
 		//then
 		assertNotNull(exception);
-		assertEquals("There is no customer with the informed id.", exception.getMessage());
+		assertEquals("There is no customer with the informed id", exception.getMessage());
 		verify(customerRepository, times(1)).findById(any());
 		verify(gameRepository, times(0)).findById(any());
 		verify(rentalRepository, times(0)).countUnavailableUnits(any());
@@ -142,7 +142,7 @@ class RentalUnitTests {
 
 		//then
 		assertNotNull(exception);
-		assertEquals("There is no game with the informed id.", exception.getMessage());
+		assertEquals("There is no game with the informed id", exception.getMessage());
 		verify(customerRepository, times(1)).findById(any());
 		verify(gameRepository, times(1)).findById(any());
 		verify(rentalRepository, times(0)).countUnavailableUnits(any());
@@ -169,7 +169,7 @@ class RentalUnitTests {
 
 		//then
 		assertNotNull(exception);
-		assertEquals("All units of this game are already rented.", exception.getMessage());
+		assertEquals("All units of this game are already rented", exception.getMessage());
 		verify(customerRepository, times(1)).findById(any());
 		verify(gameRepository, times(1)).findById(any());
 		verify(rentalRepository, times(1)).countUnavailableUnits(any());
@@ -246,7 +246,7 @@ class RentalUnitTests {
 
 		//then
 		assertNotNull(exception);
-		assertEquals("There is no rental with the informed id.", exception.getMessage());
+		assertEquals("There is no rental with the informed id", exception.getMessage());
 		verify(rentalRepository, times(1)).findById(any());
 		verify(rentalRepository, times(0)).save(any());
 	}
@@ -271,7 +271,7 @@ class RentalUnitTests {
 
 		//then
 		assertNotNull(exception);
-		assertEquals("This rental is already finished.", exception.getMessage());
+		assertEquals("This rental is already finished", exception.getMessage());
 		verify(rentalRepository, times(1)).findById(any());
 		verify(rentalRepository, times(0)).save(any());
 	}

@@ -9,16 +9,16 @@ import lombok.Data;
 @AllArgsConstructor
 public class RentalDTO {
 
-    @NotNull
-    @Positive(message = "customerId should be greater than zero.")
+    @NotNull(message = "Customer Id must not be null")
+    @Positive(message = "Customer Id should be greater than zero")
     private Long customerId;
 
-    @NotNull
-    @Positive(message = "gameId should be greater than zero.")
+    @NotNull(message = "Game Id must not be null")
+    @Positive(message = "Game Id should be greater than zero")
     private Long gameId;
 
-    @NotNull
-    @Positive(message = "daysRented should be greater than zero.")
+    @NotNull(message = "Days Rented must not be null")
+    @Positive(message = "Days Rented should be greater than zero")
     private Long daysRented;
 
 }
