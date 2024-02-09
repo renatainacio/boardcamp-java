@@ -20,7 +20,7 @@ public class GameService {
 
     public Game postGame(GameDTO gameDTO){
 
-        boolean existingGame = !this.gameRepository.findByName(gameDTO.getName()).isEmpty();
+        boolean existingGame = this.gameRepository.existsByName(gameDTO.getName());
 
         if (existingGame) 
             throw new GameAlreadyExistsException();

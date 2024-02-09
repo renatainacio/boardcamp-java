@@ -1,6 +1,5 @@
 package com.boardcamp.api.services;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -9,7 +8,6 @@ import com.boardcamp.api.dtos.CustomerDTO;
 import com.boardcamp.api.exceptions.CPFAlreadyRegisteredException;
 import com.boardcamp.api.exceptions.CustomerNotFoundException;
 import com.boardcamp.api.models.Customer;
-import com.boardcamp.api.models.Game;
 import com.boardcamp.api.repositories.CustomerRepository;
 
 @Service
@@ -23,7 +21,7 @@ public class CustomerService {
 
     public Customer postCustomer(CustomerDTO customerDTO){
 
-        boolean existingCustomer = !this.customerRepository.findByCpf(customerDTO.getCpf()).isEmpty();
+        boolean existingCustomer = this.customerRepository.existsByCpf(customerDTO.getCpf());
 
         if (existingCustomer) 
             throw new CPFAlreadyRegisteredException();
